@@ -25,12 +25,11 @@ function App() {
                   reprehenderit quibusdam! Explicabo sit officia maiores temporibus nobis culpa, numquam, voluptas facilis nisi aliquid minima?
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.Eveniet incidunt sint aspernatur ducimus molestias eius 
                   reprehenderit quibusdam! Explicabo sit officia maiores temporibus nobis culpa, numquam, voluptas facilis nisi aliquid minima?
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.Eveniet incidunt sint aspernatur ducimus molestias eius 
-                  reprehenderit quibusdam! Explicabo sit officia maiores temporibus nobis culpa, numquam, voluptas facilis nisi aliquid minima?
-
                 </p>
                 <button>En savoir plus</button>
               </div>
+              <br />
+              <br />
             </div>
         </div>
     </>
