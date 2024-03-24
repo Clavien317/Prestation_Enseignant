@@ -68,40 +68,50 @@ function Liste() {
       <Navbar />
       <div className='container'>
         <h1>Liste des enseignants</h1>
+        <hr className='line' />
         <button className='btn-add'><a href="/add_enseignant">Ajouter</a></button>
         <br />
-        <table>
-          <thead>
-            <tr>
-              <th>Matricule</th>
-              <th>Nom</th>
-              <th>Taux horaire</th>
-              <th>Nombre d'heure</th>
-              <th>Prestation</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((data, i) => (
-              <tr key={i}>
-                <td>{data.matricule}</td>
-                <td>{data.nom}</td>
-                <td>{data.taux_H}</td>
-                <td>{data.nb_H}</td>
-                <td>{data.taux_H*data.nb_H}</td>
-                <td>
-                  <button onClick={() => supprimer(data._id)}>Supprimer</button>
-                  <button><a href={`/modification/${data._id}`}>Modifier</a></button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <div className="affichage">
+              <table>
+              <thead>
+                <tr>
+                  <th>Matricule</th>
+                  <th>Nom</th>
+                  <th>Taux horaire</th>
+                  <th>Nombre d'heure</th>
+                  <th>Prestation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((data, i) => (
+                  <tr key={i}>
+                    <td>{data.matricule}</td>
+                    <td>{data.nom}</td>
+                    <td>{data.taux_H}</td>
+                    <td>{data.nb_H}</td>
+                    <td>{data.taux_H*data.nb_H}</td>
+                    <td>
+                      <button className='del' onClick={() => supprimer(data._id)}>Supprimer</button>
+                      <button className='modif'><a href={`/modification/${data._id}`}>Modifier</a></button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <br />
+            <hr />
+          </div>
+
         <br />
         <br />
 
-        <h2>Prestation maximum : {maxSalaire}</h2>
-        <h3>Prestation minimal : {minSalaire}</h3>
+              <div className="stat">
+                <h2>Prestation maximum : <span>{maxSalaire}</span></h2>
+                <br />
+                <h2>Prestation minimum : <span>{minSalaire}</span></h2>
+              </div>
       </div>
     </div>
   );

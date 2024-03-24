@@ -24,11 +24,18 @@ fieldset form
 {
     width: 70%;
     height: 2vw;
+    text-align: center;
 }
 
 .inscrir form input , label,button,select
 {
     margin-left: 15%;
+}
+
+.inscrir form label
+{
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .inscrir form button

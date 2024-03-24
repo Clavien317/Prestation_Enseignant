@@ -78,7 +78,7 @@ function Modification() {
                       <br />
                       <br />
                       <br />
-                      <button> Ajouter</button>
+                      <button> Modifier</button>
                       <br />
                       <br />
                     </div>
