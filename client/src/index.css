@@ -40,6 +40,7 @@ nav ul li a
   margin-right: 2vw;
   text-decoration: none;
   color: black;
+  font-weight: 600;
 }
 
 .container
@@ -96,8 +97,8 @@ nav ul li a
 
 .container table
 {
-  width: 70%;
-  margin-left: 15%;
+  width: 80%;
+  margin-left: 10%;
 }
 
 table th
@@ -107,12 +108,12 @@ table th
   color: white;
 }
 
-table td
+.container table td
 {
-  padding: 8px;
+  padding: 7px;
 }
 
-.del
+.container table td .del
 {
   background-color: red;
   color: white;
@@ -120,23 +121,22 @@ table td
   border-radius: 5px;
 }
 
-.modif
+.container table td .modif
 {
-  background-color: rgb(12, 39, 146);
+  background-color: rgb(6, 44, 194);
   border: 0;
   border-radius: 5px;
 }
 
-.modif a
+.container table td .modif a
 {
   color: white;
 }
 
-.container table button
+.container table td button
 {
-  padding: 5px;
+  padding: 10px;
   font-weight: bold;
-
 }
 
 .container table a
@@ -168,7 +168,7 @@ table td
 
 .container .stat
 {
-  width: 25%;
+  width: 30%;
   text-align: start;
   margin-left: 15%;
   box-shadow: black 2px 2px 2px 0px;
@@ -176,8 +176,8 @@ table td
 
 .container .affichage hr
 {
-  width: 70%;
-  margin-left: 15%;
+  width: 80%;
+  margin-left: 10%;
 }
 
 .container .stat span

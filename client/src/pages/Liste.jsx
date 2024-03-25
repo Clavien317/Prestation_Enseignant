@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../component/Navbar';
 import axios from "axios";
+import Swal from 'sweetalert2'
+import {FaTrash,FaEdit, FaPlus} from 'react-icons/fa'
+
 
 function Liste() {
   const [users, setUsers] = useState([]);
@@ -52,24 +55,44 @@ function Liste() {
   useEffect(() => {
     ListeEnseignants();
   }, []);
-
-  const supprimer = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/${id}`);
-      alert("Enseignant supprimé avec succès !");
-      ListeEnseignants();
-    } catch (error) {
-      console.error("Erreur lors de la suppression de l'enseignant:", error);
-    }
-  };
+  
+  const supprimer=(id)=>
+  {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous ne pourrez pas revenir en arrière!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, supprimer!',
+      cancelButtonText: 'Annuler',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:3000/${id}`)
+          .then(() => {
+            Swal.fire('Supprimé!', '1 plante a été supprimé.', 'success');
+            ListeEnseignants();
+          })
+          .catch((error) => {
+            Swal.fire('Erreur', 'La suppression a échoué : ' + error.message, 'error');
+          });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Annulé', 'Votre élément est en sécurité :)', 'info');
+      }
+    });
+  }
 
   return (
     <div>
       <Navbar />
+
+
+        {
+          users?(
+          <>
       <div className='container'>
         <h1>Liste des enseignants</h1>
         <hr className='line' />
-        <button className='btn-add'><a href="/add_enseignant">Ajouter</a></button>
+        <button className='btn-add'><a href="/add_enseignant"><FaPlus /> Ajouter</a></button>
         <br />
           <div className="affichage">
               <table>
@@ -92,8 +115,8 @@ function Liste() {
                     <td>{data.nb_H}</td>
                     <td>{data.taux_H*data.nb_H}</td>
                     <td>
-                      <button className='del' onClick={() => supprimer(data._id)}>Supprimer</button>
-                      <button className='modif'><a href={`/modification/${data._id}`}>Modifier</a></button>
+                      <button className='del' onClick={() => supprimer(data._id)}><FaTrash />Supprimer</button>
+                      <button className='modif'><a className='update' href={`/modification/${data._id}`}><FaEdit />Modifier</a></button>
                     </td>
                   </tr>
                 ))}
@@ -108,11 +131,19 @@ function Liste() {
         <br />
 
               <div className="stat">
-                <h2>Prestation maximum : <span>{maxSalaire}</span></h2>
+                <h2>Prestation maximum : <span>{maxSalaire} Ariary</span></h2>
                 <br />
-                <h2>Prestation minimum : <span>{minSalaire}</span></h2>
+                <h2>Prestation minimum : <span>{minSalaire} Ariary</span></h2>
               </div>
-      </div>
+    </div>
+
+          </>)
+          :
+          (<>
+            <h1>Aucun enseignant enregistré</h1>
+          </>)
+        }
+
     </div>
   );
 }

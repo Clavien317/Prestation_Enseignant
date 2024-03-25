@@ -10,7 +10,7 @@ const ajout = async(req, res) =>
     try {
         await enseignant.create({ matricule,nom,taux_H,nb_H });
         res.send("Insertion réussie");
-        console.log("Insertion réussie");
+        console.log("1 enseignant(e) est ajouté(e) avec succès");
     } catch (error) {
         console.error(error);
         res.status(500).json("Erreur serveur lors de l'insertion");

@@ -3,6 +3,9 @@ import Navbar from '../component/Navbar'
 import "../form.css"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
+import Swal from 'sweetalert2'
+
+
 
 function Modification() {
   const [input, setInput] = useState({})
@@ -34,7 +37,11 @@ function Modification() {
     e.preventDefault();
     try {
       const response = await axios.put(`http://localhost:3000/${id}`, input);
-      alert(response.data)
+      Swal.fire({
+        title: 'Succès !',
+        text: `${response.data} !`,
+        icon: 'success',
+      });
       navigate("/liste")
     } catch (e) {
       console.log(e);
@@ -68,12 +75,12 @@ function Modification() {
                       <br />
                       <label htmlFor="">Taux_H</label>
                       <br />
-                      <input type="text" defaultValue={item.taux_H} name='taux_H' onChange={change} />
+                      <input type="number" defaultValue={item.taux_H} name='taux_H' onChange={change} />
                       <br />
                       <br />
                       <label htmlFor="">Nombre d'heure</label>
                       <br />
-                      <input type="text" defaultValue={item.nb_H} name='nb_H' onChange={change} />
+                      <input type="number" defaultValue={item.nb_H} name='nb_H' onChange={change} />
                       <br />
                       <br />
                       <br />

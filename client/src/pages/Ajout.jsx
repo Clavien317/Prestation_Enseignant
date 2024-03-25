@@ -3,6 +3,9 @@ import Navbar from '../component/Navbar'
 import "../form.css"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import Swal from 'sweetalert2'
+
+
 
 
 function Ajout() {
@@ -20,7 +23,11 @@ function Ajout() {
     e.preventDefault();
     try {
         const response = await axios.post("http://localhost:3000/ajout", input);
-        alert(response.data)
+        Swal.fire({
+          title: 'Succès !',
+          text: `${response.data} !`,
+          icon: 'success',
+        });
         navigate("/liste")
 
     }catch(e)
@@ -51,12 +58,12 @@ function Ajout() {
                     <br />
                     <label htmlFor="">Taux_H</label>
                     <br />
-                    <input type="text" name='taux_H' onChange={change}/>
+                    <input type="number" name='taux_H' onChange={change}/>
                     <br />
                     <br />
                     <label htmlFor="">Nombre d'heure</label>
                     <br />
-                    <input type="text" name='nb_H' onChange={change}/>
+                    <input type="number" name='nb_H' onChange={change}/>
                     <br />
                     <br />
                     <br />
