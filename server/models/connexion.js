@@ -30,6 +30,11 @@ const schema = new mongoose.Schema({
     {
         type: Number,
         required: true
+    },
+    prestation:
+    {
+        type: Number,
+        required: true
     }
 });
 

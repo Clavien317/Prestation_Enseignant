@@ -9,6 +9,7 @@ function Liste() {
   const [users, setUsers] = useState([]);
   const [maxSalaire, setMaxSalaire] = useState(0)
   const [minSalaire, setMinSalaire] = useState(0)
+  const [total,setTotal] = useState(0)
 
 
   const ListeEnseignants = async () => {
@@ -16,8 +17,6 @@ function Liste() {
       const result = await axios.get("http://localhost:3000");
       const liste = result.data.liste
       setUsers(liste);
-
-      console.log(liste);
       const Nb_H = []
       const Taux_H=[]
       const salaire = []
@@ -36,15 +35,18 @@ function Liste() {
       const n = salaire.length
       let maxSalaire = 0
       let minSalaire= Infinity
+      let somme=0
 
       for (let i = 0; i < n; i++) {
           console.log("Salaire", salaire[i]);
+          somme+=salaire[i]
           maxSalaire = Math.max(maxSalaire, salaire[i]);
           minSalaire = Math.min(minSalaire, salaire[i]);
       }
       
       setMaxSalaire(maxSalaire)
       setMinSalaire(minSalaire)
+      setTotal(somme)
       
 
     } catch (error) {
@@ -87,7 +89,7 @@ function Liste() {
 
 
         {
-          users?(
+          users !=null ?(
           <>
       <div className='container'>
         <h1>Liste des enseignants</h1>
@@ -113,7 +115,7 @@ function Liste() {
                     <td>{data.nom}</td>
                     <td>{data.taux_H}</td>
                     <td>{data.nb_H}</td>
-                    <td>{data.taux_H*data.nb_H}</td>
+                    <td>{data.prestation}</td>
                     <td>
                       <button className='del' onClick={() => supprimer(data._id)}><FaTrash />Supprimer</button>
                       <button className='modif'><a className='update' href={`/modification/${data._id}`}><FaEdit />Modifier</a></button>
@@ -131,10 +133,13 @@ function Liste() {
         <br />
 
               <div className="stat">
+                <h2>Total : <span>{total} Ariary</span> </h2>
+                <br />
                 <h2>Prestation maximum : <span>{maxSalaire} Ariary</span></h2>
                 <br />
                 <h2>Prestation minimum : <span>{minSalaire} Ariary</span></h2>
               </div>
+              <br />
     </div>
 
           </>)

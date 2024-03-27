@@ -56,7 +56,7 @@ function Ajout() {
                     <input type="text" name='nom' onChange={change}/>
                     <br />
                     <br />
-                    <label htmlFor="">Taux_H</label>
+                    <label htmlFor="">Taux Horaire</label>
                     <br />
                     <input type="number" name='taux_H' onChange={change}/>
                     <br />

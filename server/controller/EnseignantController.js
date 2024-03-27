@@ -4,11 +4,14 @@ const enseignant = require("../models/connexion")
 const ajout = async(req, res) =>
 {
     const { matricule,nom,taux_H,nb_H } = req.body;
+
+    const prestation = taux_H*nb_H
+    
     if (!matricule || !nom || !taux_H || !nb_H) {
         return res.status(400).json("Tout le donnees sont requis");
     }
     try {
-        await enseignant.create({ matricule,nom,taux_H,nb_H });
+        await enseignant.create({ matricule,nom,taux_H,nb_H,prestation});
         res.send("Insertion réussie");
         console.log("1 enseignant(e) est ajouté(e) avec succès");
     } catch (error) {
